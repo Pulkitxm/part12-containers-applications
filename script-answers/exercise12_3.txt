@@ -1,0 +1,7 @@
+> docker start -i fervent_albattani
+root@4fd90a5efdca:/# cd usr/src/app/
+root@4fd90a5efdca:/usr/src/app# ls
+index.js
+root@4fd90a5efdca:/usr/src/app# vim index.js
+console.log('Hello World');
+root@4fd90a5efdca:/usr/src/app# exit
