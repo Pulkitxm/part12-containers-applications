@@ -8,6 +8,13 @@ router.get('/', async (_, res) => {
   res.send(todos);
 });
 
+/* GET todos listing by id. */
+router.get('/:id', async (req, res) => {
+  const { id } = req.params;
+  const todo = await Todo.findById(id)
+  res.send(todo);
+});
+
 /* POST todo to listing. */
 router.post('/', async (req, res) => {
   const todo = await Todo.create({
@@ -15,6 +22,20 @@ router.post('/', async (req, res) => {
     done: false
   })
   res.send(todo);
+});
+
+/* Update todo to listing. */
+router.put('/:id', async (req, res) => {
+  const { id } = req.params;
+  const { text, done } = req.body;
+  const todo = await Todo.findById(id);
+  const updatedTodo = await Todo.findByIdAndUpdate(id, {
+    text: text!=undefined ? text : todo.text,
+    done: done!=undefined ? done : todo.done
+  }, {
+   new:true 
+  });
+  res.send(updatedTodo);
 });
 
 const singleRouter = express.Router();
