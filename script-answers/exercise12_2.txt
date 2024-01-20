@@ -1,0 +1,28 @@
+> script
+Script started, output log file is 'typescript'.
+
+> docker pull ubuntu
+Using default tag: latest
+latest: Pulling from library/ubuntu
+29202e855b20: Pull complete
+Digest: sha256:e6173d4dc55e76b87c4af8db8821b1feae4146dd47341e4d431118c7dd060a74
+Status: Downloaded newer image for ubuntu:latest
+docker.io/library/ubuntu:latest
+
+What's Next?
+  View a summary of image vulnerabilities and recommendations → docker scout quickview ubuntu
+
+> docker container run ubuntu
+
+> docker run -it ubuntu
+root@2465bfeac8fa:/# mkdir /usr/src/app
+root@2465bfeac8fa:/# cd /usr/src/app
+root@2465bfeac8fa:/usr/src/app# ls
+root@2465bfeac8fa:/usr/src/app# touch index.js
+root@2465bfeac8fa:/usr/src/app# ls
+index.js
+root@2465bfeac8fa:/usr/src/app# exit
+exit
+
+> exit
+Script done.
