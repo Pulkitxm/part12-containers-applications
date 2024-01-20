@@ -1,0 +1,45 @@
+> docker container ls
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS                     NAMES
+cff0491fd5c0   nginx     "/docker-entrypoint.…"   2 minutes ago   Up 2 minutes   0.0.0.0:8080->80/tcp      laughing_kowalevski
+e02ce68ca724   mongo     "docker-entrypoint.s…"   9 minutes ago   Up 9 minutes   0.0.0.0:3456->27017/tcp   todo-backend-mongo-1
+
+> docker exec -it todo-backend-mongo-1 bash
+root@e02ce68ca724:/# mongosh
+Current Mongosh Log ID: 65abbc3aac8481b2473f2573
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.1.1
+Using MongoDB:          7.0.5
+Using Mongosh:          2.1.1
+test> show dbs
+admin         100.00 KiB
+config        108.00 KiB
+local          72.00 KiB
+the_database   56.00 KiB
+test> use the_database
+switched to db the_database
+the_database> show collections
+todos
+the_database> todos.find({})
+ReferenceError: todos is not defined
+the_database> db.todos.find({})
+[
+  {
+    _id: ObjectId('65abaee8e47eae5f0c358e52'),
+    text: 'Write code',
+    done: true
+  },
+  {
+    _id: ObjectId('65abaee8e47eae5f0c358e53'),
+    text: 'Learn about containers',
+    done: false
+  }
+]
+the_database> db.todos.insert
+db.todos.insertMany  db.todos.insertOne
+the_database> db.todos.insertOne({done:false,text:"Increase the number of tools in my toolbelt"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('65abbd1f83aa5f189834df0f')
+}
+the_database> exit
+root@e02ce68ca724:/# exit
+exit

@@ -3,6 +3,7 @@
 /**
  * Module dependencies.
  */
+const { log } = require('console');
 var app = require('../app');
 var debug = require('debug')('todo-express-backend:server');
 var http = require('http');
@@ -10,7 +11,7 @@ var http = require('http');
 /**
  * Get port from environment and store in Express.
  */
-
+console.log(process.env.REDIS_URL, process.env.MONGO_URL);
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
