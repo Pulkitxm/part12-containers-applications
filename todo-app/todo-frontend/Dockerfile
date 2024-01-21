@@ -6,7 +6,7 @@ COPY . .
 
 RUN npm ci 
 
-EXPOSE 3001
+RUN CI=true npm test
 
 ENV REACT_APP_BACKEND_URL=http://localhost:3000
 
