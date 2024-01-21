@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {v4 as uuid } from 'uuid'
 const TodoList = ({ todos, deleteTodo, completeTodo }) => {
   const onClickDelete = (todo) => () => {
     deleteTodo(todo)
@@ -11,7 +11,7 @@ const TodoList = ({ todos, deleteTodo, completeTodo }) => {
 
   return (
     <>
-      {todos.map(todo => {
+      {todos.map((todo,idx) => {
         const doneInfo = (
           <>
             <span>This todo is done</span>
@@ -20,7 +20,6 @@ const TodoList = ({ todos, deleteTodo, completeTodo }) => {
             </span>
           </>
         )
-
         const notDoneInfo = (
           <>
             <span>
@@ -32,16 +31,15 @@ const TodoList = ({ todos, deleteTodo, completeTodo }) => {
             </span>
           </>
         )
-
         return (
-          <div style={{ display: 'flex', justifyContent: 'space-between', maxWidth: '70%', margin: 'auto' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', maxWidth: '70%', margin: 'auto' }} key={uuid()}>
             <span>
               {todo.text} 
             </span>
             {todo.done ? doneInfo : notDoneInfo}
           </div>
         )
-      }).reduce((acc, cur) => [...acc, <hr />, cur], [])}
+      }).reduce((acc, cur) => [...acc, <hr key={uuid()} />, cur], [])}
     </>
   )
 }
